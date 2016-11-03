@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="150dp"
+    android:background="#2576E0">
+
+    <TextView
+        android:text="Thứ 4, ngày 26/10/2016"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCurrentDay"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="14dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_bell"
+            android:id="@+id/imageView"
+            android:layout_alignLeft="@+id/textCurrentDay"
+            android:layout_alignStart="@+id/textCurrentDay"
+            android:layout_weight="1"
+            android:elevation="0dp" />
+
+        <TextView
+            android:text="19:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="70dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/textCurrentTime"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_marginLeft="14dp" />
+    </LinearLayout>
+
+</RelativeLayout>

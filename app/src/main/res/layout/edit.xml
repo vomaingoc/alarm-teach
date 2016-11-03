@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@color/white">
+
+  <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="0dp"
+    android:layout_width="fill_parent"
+    android:layout_weight="1">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:padding="8sp"
+        android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <TimePicker
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/timePicker" />
+      <TextView
+        style="@style/widget"
+        android:text="Mô tả"
+          android:paddingTop="10dp"
+          android:textStyle="normal|bold"
+          android:textSize="18sp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+
+      <EditText
+        style="@style/widget"
+        android:textColor="@color/black"
+        android:id="@+id/title"
+        android:singleLine="true" />
+
+      <TextView
+          style="@style/widget"
+          android:text="Lặp lại"
+          android:paddingTop="10dp"
+          android:textStyle="normal|bold"
+          android:textSize="18sp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/textView2"
+          android:layout_weight="1" />
+
+      <Button
+        android:id="@+id/buttonDate"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onDateClick" />
+
+      <CheckBox
+          android:id="@+id/checkBoxVibrate"
+          android:layout_weight="1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Rung" />
+
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingTop="8sp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+          android:visibility="gone">
+
+        <Button
+          android:id="@+id/time_button"
+          android:layout_weight="1"
+          android:layout_width="0sp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:onClick="onTimeClick" />
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+
+  </ScrollView>
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="8sp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+      style="@style/edit_button"
+      android:id="@+id/done"
+      android:text="OK"
+      android:onClick="onDoneClick"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="5dp"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@color/white" />
+
+    <Button
+      style="@style/edit_button"
+      android:id="@+id/cancel"
+      android:text="Hủy"
+      android:onClick="onCancelClick"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/white"
+        android:background="@android:color/holo_orange_dark" />
+
+  </LinearLayout>
+
+</LinearLayout>
+

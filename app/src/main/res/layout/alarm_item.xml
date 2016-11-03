@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="horizontal"
+  android:padding="8dip"
+  android:background="@drawable/list_item_bg"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <ImageView
+      app:srcCompat="@drawable/ic_bell_on"
+      android:id="@+id/iconBell"
+      android:layout_gravity="center_vertical"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:adjustViewBounds="true"
+      android:layout_weight="1" />
+
+  <LinearLayout style="@style/list_item"
+      android:layout_weight="3"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:paddingLeft="10dp">
+    <TextView
+        style="@style/list_item"
+        android:id="@+id/item_title"
+        android:textSize="18dip"
+        android:textStyle="bold"
+        android:text="Wake up"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        style="@style/list_item"
+        android:id="@+id/item_details"
+        android:textSize="14dip"
+        android:textColor="@color/alarm_details"
+        android:text="Wednesday at 5 pm" />
+  </LinearLayout>
+
+
+</LinearLayout>
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+  android:padding="4dip"
+  android:background="#2576E0"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+  <TextView
+    android:id="@+id/alarm_title_text"
+      android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+      android:textColor="@color/white"
+    android:textSize="50dp"
+    android:textStyle="bold"
+    android:text="Báo thức"
+      android:layout_above="@+id/layoutHour"
+      android:elevation="1dp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="15dp" />
+
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:layout_alignParentRight="false"
+      android:layout_alignParentEnd="false"
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true"
+      android:layout_centerInParent="true"
+      android:id="@+id/layoutHour">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="94dp"
+        app:srcCompat="@drawable/ic_bell"
+        android:id="@+id/imageView2" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmTime"
+        android:layout_weight="1"
+        android:textColor="@color/white"
+        android:textSize="44sp"
+        android:textStyle="normal|bold"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp" />
+  </LinearLayout>
+
+  <Button
+    android:id="@+id/dismiss_alarm"
+    android:layout_weight="6"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Dismiss"
+    android:onClick="onDismissClick"
+      android:background="@android:color/holo_orange_dark"
+      android:textColor="@color/white"
+      android:layout_alignParentLeft="false"
+      android:layout_alignParentStart="false"
+      android:layout_alignParentTop="false"
+      android:layout_alignParentRight="false"
+      android:layout_alignWithParentIfMissing="false"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp" />
+
+</RelativeLayout>
+
