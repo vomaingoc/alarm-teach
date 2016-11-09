@@ -116,11 +116,7 @@ public class DateTime
   public String formatDetails(Alarm alarm)
   {
     String res = "???";
-
-    if (alarm.getOccurence() == Alarm.ONCE)
-      res = formatDate(alarm);
-    else if (alarm.getOccurence() == Alarm.WEEKLY)
-      res = formatDays(alarm);
+    res = formatDays(alarm);
 
     res += ", " + formatTime(alarm);
 

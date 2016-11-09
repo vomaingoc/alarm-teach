@@ -36,7 +36,7 @@ public class Alarm implements Comparable<Alarm>
   private String title;
   private long date;
   private boolean enabled;
-  private int occurence;
+  //private int occurence;
   private int days;
   private long nextOccurence;
 
@@ -53,7 +53,7 @@ public class Alarm implements Comparable<Alarm>
     title = "";
     date = System.currentTimeMillis();
     enabled = true;
-    occurence = ONCE;
+    //occurence = ONCE;
     days = EVERY_DAY;
     update();
   }
@@ -78,7 +78,7 @@ public class Alarm implements Comparable<Alarm>
     this.title = title;
   }
 
-  public int getOccurence()
+  /*public int getOccurence()
   {
     return occurence;
   }
@@ -87,7 +87,7 @@ public class Alarm implements Comparable<Alarm>
   {
     this.occurence = occurence;
     update();
-  }
+  }*/
 
   public long getDate()
   {
@@ -154,8 +154,8 @@ public class Alarm implements Comparable<Alarm>
   {
     Calendar now = Calendar.getInstance();
 
-    if (occurence == WEEKLY)
-    {
+    /*if (occurence == WEEKLY)
+    {*/
       Calendar alarm = Calendar.getInstance();
 
       alarm.setTimeInMillis(date);
@@ -179,7 +179,7 @@ public class Alarm implements Comparable<Alarm>
       }
 
       nextOccurence = alarm.getTimeInMillis();
-    }
+    //}
 
     date = nextOccurence;
   }
@@ -190,7 +190,7 @@ public class Alarm implements Comparable<Alarm>
     intent.putExtra("com.taradov.alarmme.title", title);
     intent.putExtra("com.taradov.alarmme.date", date);
     intent.putExtra("com.taradov.alarmme.alarm", enabled);
-    intent.putExtra("com.taradov.alarmme.occurence", occurence);
+    //intent.putExtra("com.taradov.alarmme.occurence", occurence);
     intent.putExtra("com.taradov.alarmme.days", days);
   }
 
@@ -200,7 +200,7 @@ public class Alarm implements Comparable<Alarm>
     title = intent.getStringExtra("com.taradov.alarmme.title");
     date = intent.getLongExtra("com.taradov.alarmme.date", 0);
     enabled = intent.getBooleanExtra("com.taradov.alarmme.alarm", true);
-    occurence = intent.getIntExtra("com.taradov.alarmme.occurence", 0);
+    //occurence = intent.getIntExtra("com.taradov.alarmme.occurence", 0);
     days = intent.getIntExtra("com.taradov.alarmme.days", 0);
     update();
   }
@@ -211,7 +211,7 @@ public class Alarm implements Comparable<Alarm>
     dos.writeUTF(title);
     dos.writeLong(date);
     dos.writeBoolean(enabled);
-    dos.writeInt(occurence);
+    //dos.writeInt(occurence);
     dos.writeInt(days);
   }
  
@@ -221,7 +221,7 @@ public class Alarm implements Comparable<Alarm>
     title = dis.readUTF();
     date = dis.readLong();
     enabled= dis.readBoolean();
-    occurence= dis.readInt();
+    //occurence= dis.readInt();
     days = dis.readInt();
     update();
   }

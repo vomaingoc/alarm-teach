@@ -52,6 +52,7 @@ public class EditAlarm extends AppCompatActivity
   private EditText mTitle;
   private Button mDateButton;
   private TimePicker mTimePicker;
+  private CheckBox mCheckBoxVibrate;
 
   private Alarm mAlarm;
   private DateTime mDateTime;
@@ -79,6 +80,7 @@ public class EditAlarm extends AppCompatActivity
     mTitle = (EditText)findViewById(R.id.title);
     mDateButton = (Button)findViewById(R.id.buttonDate);
     mTimePicker = (TimePicker)findViewById(R.id.timePicker);
+    mCheckBoxVibrate = (CheckBox)findViewById(R.id.checkBoxVibrate);
 
     mAlarm = new Alarm(this);
     mAlarm.fromIntent(getIntent());
@@ -128,6 +130,12 @@ public class EditAlarm extends AppCompatActivity
   {
     Intent intent = new Intent();
 
+    mHour = mTimePicker.getCurrentHour();
+    mMinute = mTimePicker.getCurrentMinute();
+
+    mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
+    mAlarm.setDate(mCalendar.getTimeInMillis());
+    mAlarm.setEnabled(mCheckBoxVibrate.isChecked());
     mAlarm.toIntent(intent);
     setResult(RESULT_OK, intent);
     finish();
@@ -187,13 +195,12 @@ public class EditAlarm extends AppCompatActivity
   private void updateButtons()
   {
     mDateButton.setText(mDateTime.formatDays(mAlarm));
-    //mTimeButton.setText(mDateTime.formatTime(mAlarm));
-    CharSequence hehe = mDateTime.formatTime(mAlarm);
-    Toast.makeText(mDateButton.getContext(), hehe, Toast.LENGTH_LONG).show();
 
     Date date = new Date(mAlarm.getDate());
     mTimePicker.setCurrentHour(date.getHours());
     mTimePicker.setCurrentMinute(date.getMinutes());
+
+    mCheckBoxVibrate.setChecked(mAlarm.getEnabled());
   }
 
   private Dialog DaysPickerDialog()
