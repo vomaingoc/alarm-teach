@@ -36,12 +36,9 @@ public class Alarm implements Comparable<Alarm>
   private String title;
   private long date;
   private boolean enabled;
-  //private int occurence;
+  private boolean vibrate;
   private int days;
   private long nextOccurence;
-
-  public static final int ONCE = 0;
-  public static final int WEEKLY = 1;
 
   public static final int NEVER = 0;
   public static final int EVERY_DAY = 0x7f;
@@ -53,7 +50,7 @@ public class Alarm implements Comparable<Alarm>
     title = "";
     date = System.currentTimeMillis();
     enabled = true;
-    //occurence = ONCE;
+    vibrate = true;
     days = EVERY_DAY;
     update();
   }
@@ -78,17 +75,6 @@ public class Alarm implements Comparable<Alarm>
     this.title = title;
   }
 
-  /*public int getOccurence()
-  {
-    return occurence;
-  }
-
-  public void setOccurence(int occurence)
-  {
-    this.occurence = occurence;
-    update();
-  }*/
-
   public long getDate()
   {
     return date;
@@ -108,6 +94,13 @@ public class Alarm implements Comparable<Alarm>
   public void setEnabled(boolean enabled)
   {
     this.enabled = enabled;
+  }
+
+  public boolean getVibrate() { return vibrate; }
+
+  public void setVibrate(boolean vibrate)
+  {
+    this.vibrate = vibrate;
   }
 
   public int getDays()
@@ -154,54 +147,51 @@ public class Alarm implements Comparable<Alarm>
   {
     Calendar now = Calendar.getInstance();
 
-    /*if (occurence == WEEKLY)
-    {*/
-      Calendar alarm = Calendar.getInstance();
+    Calendar alarm = Calendar.getInstance();
 
-      alarm.setTimeInMillis(date);
-      alarm.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+    alarm.setTimeInMillis(date);
+    alarm.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
 
-      if (days != NEVER)
+    if (days != NEVER)
+    {
+      while (true)
       {
-        while (true)
-        {
-          int day = (alarm.get(Calendar.DAY_OF_WEEK) + 5) % 7;  
+        int day = (alarm.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 
-          if (alarm.getTimeInMillis() > now.getTimeInMillis() && (days & (1 << day)) > 0)
-            break;
+        if (alarm.getTimeInMillis() > now.getTimeInMillis() && (days & (1 << day)) > 0)
+          break;
 
-          alarm.add(Calendar.DAY_OF_MONTH, 1);
-        }
+        alarm.add(Calendar.DAY_OF_MONTH, 1);
       }
-      else
-      {
-        alarm.add(Calendar.YEAR, 10);
-      }
+    }
+    else
+    {
+      alarm.add(Calendar.YEAR, 10);
+    }
 
-      nextOccurence = alarm.getTimeInMillis();
-    //}
+    nextOccurence = alarm.getTimeInMillis();
 
     date = nextOccurence;
   }
 
   public void toIntent(Intent intent)
   {
-    intent.putExtra("com.taradov.alarmme.id", id);
-    intent.putExtra("com.taradov.alarmme.title", title);
-    intent.putExtra("com.taradov.alarmme.date", date);
-    intent.putExtra("com.taradov.alarmme.alarm", enabled);
-    //intent.putExtra("com.taradov.alarmme.occurence", occurence);
-    intent.putExtra("com.taradov.alarmme.days", days);
+    intent.putExtra("com.example.alarm_crash.id", id);
+    intent.putExtra("com.example.alarm_crash.title", title);
+    intent.putExtra("com.example.alarm_crash.date", date);
+    intent.putExtra("com.example.alarm_crash.alarm", enabled);
+    intent.putExtra("com.example.alarm_crash.vibrate", vibrate);
+    intent.putExtra("com.example.alarm_crash.days", days);
   }
 
   public void fromIntent(Intent intent)
   {
-    id = intent.getLongExtra("com.taradov.alarmme.id", 0);
-    title = intent.getStringExtra("com.taradov.alarmme.title");
-    date = intent.getLongExtra("com.taradov.alarmme.date", 0);
-    enabled = intent.getBooleanExtra("com.taradov.alarmme.alarm", true);
-    //occurence = intent.getIntExtra("com.taradov.alarmme.occurence", 0);
-    days = intent.getIntExtra("com.taradov.alarmme.days", 0);
+    id = intent.getLongExtra("com.example.alarm_crash.id", 0);
+    title = intent.getStringExtra("com.example.alarm_crash.title");
+    date = intent.getLongExtra("com.example.alarm_crash.date", 0);
+    enabled = intent.getBooleanExtra("com.example.alarm_crash.alarm", true);
+    vibrate = intent.getBooleanExtra("com.example.alarm_crash.vibrate", true);
+    days = intent.getIntExtra("com.example.alarm_crash.days", 0);
     update();
   }
 
@@ -211,7 +201,7 @@ public class Alarm implements Comparable<Alarm>
     dos.writeUTF(title);
     dos.writeLong(date);
     dos.writeBoolean(enabled);
-    //dos.writeInt(occurence);
+    dos.writeBoolean(vibrate);
     dos.writeInt(days);
   }
  
@@ -221,9 +211,8 @@ public class Alarm implements Comparable<Alarm>
     title = dis.readUTF();
     date = dis.readLong();
     enabled= dis.readBoolean();
-    //occurence= dis.readInt();
+    vibrate = dis.readBoolean();
     days = dis.readInt();
     update();
   }
 }
-

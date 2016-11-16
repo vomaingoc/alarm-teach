@@ -47,13 +47,13 @@ public class AlarmNotification extends Activity
   private Ringtone mRingtone;
   private Vibrator mVibrator;
   private final long[] mVibratePattern = { 0, 500, 500 };
-  private boolean mVibrate;
   private Uri mAlarmSound;
   private long mPlayTime;
   private Timer mTimer = null;
   private Alarm mAlarm;
   private DateTime mDateTime;
   private TextView mTextView;
+  private TextView mTextHour;
   private PlayTimerTask mTimerTask;
 
   @Override
@@ -70,12 +70,12 @@ public class AlarmNotification extends Activity
 
     mDateTime = new DateTime(this);
     mTextView = (TextView)findViewById(R.id.alarm_title_text);
+    mTextHour = (TextView)findViewById(R.id.alarm_title_hour);
 
     readPreferences();
 
     mRingtone = RingtoneManager.getRingtone(getApplicationContext(), mAlarmSound);
-    if (mVibrate)
-      mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
     start(getIntent());
   }
@@ -110,11 +110,14 @@ public class AlarmNotification extends Activity
 
     mTextView.setText(mAlarm.getTitle());
 
+    DateTime mDateTime = new DateTime(this);
+    mTextHour.setText(mDateTime.formatTime(mAlarm));
+
     mTimerTask = new PlayTimerTask();
     mTimer = new Timer();
     mTimer.schedule(mTimerTask, mPlayTime);
     mRingtone.play();
-    if (mVibrate)
+    if (mAlarm.getVibrate())
       mVibrator.vibrate(mVibratePattern, 0);
   }
 
@@ -124,7 +127,7 @@ public class AlarmNotification extends Activity
 
     mTimer.cancel();
     mRingtone.stop();
-    if (mVibrate)
+    if (mAlarm.getVibrate())
       mVibrator.cancel();
   }
 
@@ -138,7 +141,6 @@ public class AlarmNotification extends Activity
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
     mAlarmSound = Uri.parse(prefs.getString("alarm_sound_pref", "DEFAULT_RINGTONE_URI"));
-    mVibrate = prefs.getBoolean("vibrate_pref", true);
     mPlayTime = (long)Integer.parseInt(prefs.getString("alarm_play_time_pref", "30")) * 1000;
   }
 

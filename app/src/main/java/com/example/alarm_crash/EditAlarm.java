@@ -23,7 +23,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.app.Dialog;
 import android.app.AlertDialog;
@@ -31,27 +30,23 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.text.TextWatcher;
 import android.text.Editable;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-import android.widget.AdapterView;
-import android.widget.CompoundButton;
 import android.content.Intent;
 import android.content.DialogInterface;
-import android.widget.Toast;
 
 public class EditAlarm extends AppCompatActivity
 {
   private EditText mTitle;
   private Button mDateButton;
   private TimePicker mTimePicker;
+  private CheckBox mCheckBoxEnable;
   private CheckBox mCheckBoxVibrate;
 
   private Alarm mAlarm;
@@ -80,6 +75,7 @@ public class EditAlarm extends AppCompatActivity
     mTitle = (EditText)findViewById(R.id.title);
     mDateButton = (Button)findViewById(R.id.buttonDate);
     mTimePicker = (TimePicker)findViewById(R.id.timePicker);
+    mCheckBoxEnable = (CheckBox)findViewById(R.id.checkBoxEnable);
     mCheckBoxVibrate = (CheckBox)findViewById(R.id.checkBoxVibrate);
 
     mAlarm = new Alarm(this);
@@ -135,7 +131,8 @@ public class EditAlarm extends AppCompatActivity
 
     mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
     mAlarm.setDate(mCalendar.getTimeInMillis());
-    mAlarm.setEnabled(mCheckBoxVibrate.isChecked());
+    mAlarm.setEnabled(mCheckBoxEnable.isChecked());
+    mAlarm.setVibrate(mCheckBoxVibrate.isChecked());
     mAlarm.toIntent(intent);
     setResult(RESULT_OK, intent);
     finish();
@@ -200,7 +197,8 @@ public class EditAlarm extends AppCompatActivity
     mTimePicker.setCurrentHour(date.getHours());
     mTimePicker.setCurrentMinute(date.getMinutes());
 
-    mCheckBoxVibrate.setChecked(mAlarm.getEnabled());
+    mCheckBoxEnable.setChecked(mAlarm.getEnabled());
+    mCheckBoxVibrate.setChecked(mAlarm.getVibrate());
   }
 
   private Dialog DaysPickerDialog()

@@ -72,6 +72,13 @@
         android:onClick="onDateClick" />
 
       <CheckBox
+          android:id="@+id/checkBoxEnable"
+          android:layout_weight="1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Sử dụng" />
+
+      <CheckBox
           android:id="@+id/checkBoxVibrate"
           android:layout_weight="1"
           android:layout_width="match_parent"
