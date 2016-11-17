@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_question2"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.example.alarm_crash.QuestionActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#2576E0"
+        tools:layout_width="match_parent"
+        android:layout_margin="0dp"
+        android:layout_marginLeft="0dp"
+        >
+
+        <TextView
+            android:text="Trắc nghiệm tiếng Anh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textSize="24sp"
+            android:textColor="?android:attr/textColorPrimaryInverse"
+            android:textAlignment="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
+
+        <ProgressBar
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+        <TextView
+            android:text="0/5 câu đúng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textSize="24sp"
+            android:textColor="?android:attr/textColorPrimaryInverse"
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:padding="30dp"
+        android:layout_above="@+id/button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="Câu hỏi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/groupRadio1"
+                android:theme="@style/AppTheme">
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 1" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Option 2" />
+
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Option 3"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radio4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Option 4"/>
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:text="Tiếp tục"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:textAlignment="center"
+        android:paddingBottom="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:elevation="1dp"
+        android:typeface="normal"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>
